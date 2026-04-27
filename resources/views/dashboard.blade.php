@@ -7,7 +7,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
         :root {
-            color-scheme: light;
+            color-scheme: dark;
             font-family: Inter, system-ui, -apple-system, sans-serif;
         }
 
@@ -17,8 +17,8 @@
 
         body {
             margin: 0;
-            background: linear-gradient(150deg, #f3f7ff 0%, #eefbf6 55%, #f8f2ff 100%);
-            color: #1f2a44;
+            background: #0f172a;
+            color: #e2e8f0;
         }
 
         .layout {
@@ -28,15 +28,16 @@
         }
 
         .sidebar {
-            background: linear-gradient(160deg, #141f62 0%, #2454b2 55%, #63b8ff 100%);
+            background: linear-gradient(160deg, #0f172a 0%, #1e293b 55%, #334155 100%);
             color: #fff;
             padding: 24px;
-            box-shadow: 8px 0 24px rgba(17, 27, 49, 0.2);
+            box-shadow: 8px 0 24px rgba(0, 0, 0, 0.3);
             overflow-y: auto;
+            border-right: 1px solid #1e293b;
         }
 
         .hint {
-            color: #c9d4f4;
+            color: #94a3b8;
         }
 
         .scan-form {
@@ -54,16 +55,16 @@
         }
 
         input {
-            background: #f6f9ff;
-            border: 1px solid #dce6ff;
-            color: #1f2a44;
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #f1f5f9;
         }
 
         button {
-            background: linear-gradient(135deg, #4e7dff 0%, #3f67f2 100%);
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
             color: #fff;
             cursor: pointer;
-            box-shadow: 0 6px 14px rgba(64, 102, 238, 0.25);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
         }
 
         button:disabled {
@@ -82,15 +83,16 @@
         .channel-btn {
             width: 100%;
             text-align: left;
-            background: #273556;
+            background: #1e293b;
             display: flex;
             justify-content: space-between;
             align-items: center;
             transition: background 0.2s ease, transform 0.2s ease;
+            color: #f1f5f9;
         }
 
         .channel-btn:hover {
-            background: #304069;
+            background: #334155;
             transform: translateY(-1px);
         }
 
@@ -119,40 +121,48 @@
             z-index: 5;
             margin-bottom: 8px;
             padding: 8px 0;
-            background: linear-gradient(180deg, rgba(243, 247, 255, 0.98) 0%, rgba(243, 247, 255, 0.9) 100%);
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(8px);
         }
 
         a {
-            color: #2e5ad7;
+            color: #60a5fa;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            background: #ffffff;
+            background: #1e293b;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 24px rgba(24, 49, 99, 0.08);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
         }
 
         th,
         td {
             text-align: left;
-            padding: 8px;
-            border-bottom: 1px solid #e8ecf7;
+            background-color: #000000;
+            padding: 12px;
+            border-bottom: 1px solid #334155;
         }
 
         th {
-            background: #dce6ff;
-            color: #263760;
+            background: #334155;
+            color: #f1f5f9;
         }
 
+        /**
         tr:nth-child(even) td {
-            background: #f9fbff;
+            background: #1e293b;
         }
+
+        tr:nth-child(odd) td {
+            background: #1a2335;
+        }
+        **/
 
         tr:hover td {
-            background: #f5f8ff;
+            background: #2d3748;
         }
 
         .sort-btn {
@@ -165,13 +175,13 @@
         }
 
         .sort-btn:hover {
-            color: #2d54d9;
+            color: #60a5fa;
         }
 
         .plain-btn {
-            background: #f5f8ff;
-            color: #2e5ad7;
-            border: 1px solid #dbe3ff;
+            background: #334155;
+            color: #f1f5f9;
+            border: 1px solid #475569;
             box-shadow: none;
         }
 
@@ -179,7 +189,7 @@
             background: transparent;
             border: none;
             box-shadow: none;
-            color: #163f9f;
+            color: #60a5fa;
             padding: 0;
             font-weight: 600;
             text-align: left;
@@ -188,11 +198,11 @@
         }
 
         .video-link:hover {
-            color: #0f2f7c;
+            color: #93c5fd;
         }
 
         .error {
-            color: #ffc8d8;
+            color: #f87171;
         }
     </style>
 </head>
@@ -317,6 +327,14 @@
                 sortField: 'duration_sec',
                 sortDirection: 'asc',
                 highlightRules: [
+                    // Dark mode
+                    // { keywords: ["stress", "anxiety", "relax"], color: "#fb923c" },
+                    // { keywords: ["morning"], color: "#38bdf8" },
+                    // { keywords: ["evening", "bed"], color: "#818cf8" },
+                    // { keywords: ["beginner"], color: "#4ade80" },
+                    // { keywords: ["everyday"], color: "#facc15" },
+                    // { keywords: ["stretch", "advanced"], color: "#f472b6" }
+                    // Light mode - regular
                     { keywords: ["stress", "anxiety", "relax"], color: "#FF7A00" },
                     { keywords: ["morning"], color: "#00A3FF" },
                     { keywords: ["evening", "bed"], color: "#001E9A" },
@@ -499,7 +517,7 @@
                     const match = this.highlightRules.find(rule => rule.keywords.some(keyword => title.includes(keyword)));
                     if (!match) return {};
                     return {
-                        backgroundColor: this.hexToRgba(match.color, 0.18)
+                        backgroundColor: this.hexToRgba(match.color, 0.5)
                     };
                 }
             }
