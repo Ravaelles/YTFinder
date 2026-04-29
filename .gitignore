@@ -1,4 +1,6 @@
 *.log
+.aider.chat.history.md
+.aider.input.history
 .DS_Store
 .env
 .env.backup
@@ -6,6 +8,7 @@
 .phpactor.json
 .phpunit.result.cache
 /.aider
+/.aider.tags.cache.v4
 /.codex
 /.cursor/
 /.idea
