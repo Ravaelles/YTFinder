@@ -1,5 +1,6 @@
 *.log
-.aider*
+.aider.chat.history.md
+.aider.input.history
 .DS_Store
 .env
 .env.backup
