@@ -336,9 +336,9 @@
                     // { keywords: ["stretch", "advanced"], color: "#f472b6" }
                     // Light mode - regular
                     { keywords: ["stress", "anxiety", "relax"], color: "#FF7A00" },
+                    { keywords: ["gentle"], color: "#00C853" },
                     { keywords: ["morning"], color: "#00A3FF" },
                     { keywords: ["evening", "bed"], color: "#001E9A" },
-                    { keywords: ["beginner"], color: "#00C853" },
                     { keywords: ["everyday"], color: "#FFD400" },
                     { keywords: ["stretch", "advanced"], color: "#FF2D96" }
                 ],
