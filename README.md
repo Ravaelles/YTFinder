@@ -4,6 +4,10 @@ Laravel + Vue.js dashboard that scans a YouTube channel once, stores video metad
 
 <img width="900" alt="image" src="https://github.com/user-attachments/assets/6dab5350-8285-41e1-8263-6d0bd952e48f" />
 
+## Versions
+
+Master branch is written in `Laravel` + `MySQL`.
+There's also `node` branch, which uses `Node.js` and `SQLite`.
 
 ## What this solves
 
