@@ -500,8 +500,40 @@
 
                     const el = document.getElementById('video-' + target.id);
                     if (el) {
-                        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        this.smoothScroll(el, 500);
                     }
+                },
+
+                smoothScroll(targetEl, duration) {
+                    const container = document.querySelector('.content');
+                    if (!container || !targetEl) return;
+
+                    const containerRect = container.getBoundingClientRect();
+                    const targetRect = targetEl.getBoundingClientRect();
+
+                    const targetY = targetRect.top - containerRect.top + container.scrollTop;
+                    const centerOffset = (containerRect.height - targetRect.height) / 2;
+                    const finalScrollTop = Math.max(0, targetY - centerOffset);
+
+                    const startScrollTop = container.scrollTop;
+                    const distance = finalScrollTop - startScrollTop;
+                    let startTime = null;
+
+                    const easeInOutCubic = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+                    const animation = (currentTime) => {
+                        if (startTime === null) startTime = currentTime;
+                        const timeElapsed = currentTime - startTime;
+                        const progress = Math.min(timeElapsed / duration, 1);
+                        
+                        container.scrollTop = startScrollTop + distance * easeInOutCubic(progress);
+
+                        if (progress < 1) {
+                            requestAnimationFrame(animation);
+                        }
+                    };
+
+                    requestAnimationFrame(animation);
                 },
 
                 hexToRgba(hex, alpha) {
