@@ -8,3 +8,4 @@
 - Added a 30px visual divider after sorting buttons.
 - Updated duration format to use the ⏳ emoji instead of tilde.
 - Added 30 and 45-minute duration jump options.
+- Replaced native `scrollIntoView` with a custom `smoothScroll` function to guarantee animations complete within 500ms.
