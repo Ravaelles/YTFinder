@@ -292,7 +292,7 @@
                             <template x-for="video in sortedVideos" :key="video.id">
                                 <tr :id="'video-' + video.id">
                                     <td :style="videoCellStyle(video)">
-                                        <button class="video-link" @click="openVideo(video)" x-text="video.title"></button>
+                                        <a class="video-link" :href="video.video_url" target="_blank" rel="noopener noreferrer" @click="trackVideoClick(video)" @auxclick="if ($event.button === 1) trackVideoClick(video)" x-text="video.title"></a>
                                     </td>
                                     <td :style="videoCellStyle(video)" x-text="video.durationLabel"></td>
                                     <td :style="videoCellStyle(video)" x-text="formatDate(video.published_at)"></td>
@@ -421,8 +421,7 @@
                     }
                 },
 
-                async openVideo(video) {
-                    window.open(video.video_url, '_blank', 'noopener,noreferrer');
+                async trackVideoClick(video) {
                     const res = await fetch(`/api/videos/${video.id}/click`, { method: 'POST' });
                     if (res.ok) {
                         video.click_count += 1;
