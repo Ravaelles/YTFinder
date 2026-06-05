@@ -248,10 +248,13 @@
                     <div class="header-actions actions-sticky">
                         <button class="plain-btn" :disabled="refreshing" @click="refreshChannel" x-text="refreshing ? 'Refreshing...' : 'Refresh'"></button>
                         <button class="plain-btn" @click="sortShortest()">Shortest</button>
-                        <button class="plain-btn" @click="jumpToDuration(5)">~5min</button>
-                        <button class="plain-btn" @click="jumpToDuration(10)">~10min</button>
-                        <button class="plain-btn" @click="jumpToDuration(15)">~15min</button>
                         <button class="plain-btn" @click="sortNewest()">Newest</button>
+                        <div style="width: 30px;"></div>
+                        <button class="plain-btn" @click="jumpToDuration(5)">⏳5 min</button>
+                        <button class="plain-btn" @click="jumpToDuration(10)">⏳10 min</button>
+                        <button class="plain-btn" @click="jumpToDuration(15)">⏳15 min</button>
+                        <button class="plain-btn" @click="jumpToDuration(30)">⏳30 min</button>
+                        <button class="plain-btn" @click="jumpToDuration(45)">⏳45 min</button>
                         <a :href="selectedChannel.source_url" target="_blank" rel="noreferrer">Open channel</a>
                     </div>
 
