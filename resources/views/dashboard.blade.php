@@ -354,7 +354,11 @@
                     const res = await fetch('/api/channels');
                     this.channels = await res.json();
                     if (!this.selectedChannel && this.channels.length > 0) {
-                        await this.openChannel(this.channels[0]);
+                        const savedChannelId = localStorage.getItem('ytfinder_selected_channel');
+                        const savedChannel = savedChannelId
+                            ? this.channels.find(c => c.id == savedChannelId)
+                            : null;
+                        await this.openChannel(savedChannel || this.channels[0]);
                     }
                 },
 
@@ -384,6 +388,7 @@
 
                 async openChannel(channel) {
                     this.selectedChannel = channel;
+                    localStorage.setItem('ytfinder_selected_channel', channel.id);
                     this.loadingVideos = true;
                     const res = await fetch(`/api/channels/${channel.id}/videos`);
                     this.videos = await res.json();
@@ -525,7 +530,7 @@
                         if (startTime === null) startTime = currentTime;
                         const timeElapsed = currentTime - startTime;
                         const progress = Math.min(timeElapsed / duration, 1);
-                        
+
                         container.scrollTop = startScrollTop + distance * easeInOutCubic(progress);
 
                         if (progress < 1) {
